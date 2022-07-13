@@ -82,3 +82,29 @@ export class AddBlankToSlashPipe implements PipeTransform {
 ```html
 <p>{{ text | addBlankToSlash }}</p>
 ```
+
+## trackBy
+
+- 再描画が多い ngFor を使用している箇所で使用
+- trackBy を使用することで変更箇所の DOM のみ再生成するように設定できる。
+
+```html
+// 使用例
+<app-item *ngFor="let id of itemIds; trackBy: trackById" [id]="id"></app-item>
+```
+
+## @ViewChild, @ViewChildren
+
+- 仮想ではない DOM を操作したい場合に使用
+- @ViewChild は取得する DOM が単一の場合
+- @ViewChildren は取得する DOM が複数の場合
+- 基本的に ngAfterViewInit()と一緒に使用することが多い。(ngAfterViewInit は DOM が生成された後にイベントが発火するため)
+
+```ts
+export class AppComponent implements AfterViewInit {
+  @ViewChild("hogeElement") hogeElement: ElementRef;
+  ngAfterViewInit() {
+    this.hogeElement.nativeElement.value = "hello!";
+  }
+}
+```

@@ -1,32 +1,11 @@
 # Angular 記述まとめ
 
-## ng-template
-
-- `#`でテンプレート名を指定、`let-変数名="使用先のオブジェクトのkey名"`
-
-```html
-<ng-template #input let-controls="hoge">
-  <p>{{controls}}</p>
-</ng-template>
-```
-
-- 使用するときは`ngTemplateOutlet`にテンプレート名を指定し、`ngTemplateOutletContext`にオブジェクトを渡す。
-
-```html
-<ng-template
-  [ngTemplateOutlet]="input"
-  [ngTemplateOutletContext]="{hoge: 'hello!!'}"
-></ng-template>
-```
-
----
-
 ## ng-container
 
 - このタグで囲うと無駄なタグがでない。
 
 ```html
-<ng-container *ngIf="hoge"><ng-container /></ng-container>
+<ng-container *ngIf="hoge"></ng-container>
 ```
 
 ---
@@ -85,9 +64,11 @@ export class AddBlankToSlashPipe implements PipeTransform {
 
 #### Pipe を View ではない箇所で使用したい場合
 
-1. appModule に記述 `providers: [HogePipe,...]`
+1. appModule.ts に記述 `providers: [HogePipe,...]`
 2. 使用したい箇所で DI `constructor(private hogePipe: HogePipe) { }`
 3. `this.hogePipe.transform()`で使用できる
+
+---
 
 ## trackBy
 
@@ -98,6 +79,8 @@ export class AddBlankToSlashPipe implements PipeTransform {
 // 使用例
 <app-item *ngFor="let id of itemIds; trackBy: trackById" [id]="id"></app-item>
 ```
+
+---
 
 ## @ViewChild, @ViewChildren
 
@@ -115,6 +98,8 @@ export class AppComponent implements AfterViewInit {
 }
 ```
 
+---
+
 ## コンポーネントセレクタの説明
 
 | 要素        | 備考                     |
@@ -129,4 +114,25 @@ selector: 'app-hoge',
 templateUrl: './hoge.component.html',
 styleUrls: ['./hoge.component.css']
 })
+```
+
+---
+
+## ng-template
+
+- `#`でテンプレート名を指定、`let-変数名="使用先のオブジェクトのkey名"`
+
+```html
+<ng-template #input let-controls="hoge">
+  <p>{{controls}}</p>
+</ng-template>
+```
+
+- 使用するときは`ngTemplateOutlet`にテンプレート名を指定し、`ngTemplateOutletContext`にオブジェクトを渡す。
+
+```html
+<ng-template
+  [ngTemplateOutlet]="input"
+  [ngTemplateOutletContext]="{hoge: 'hello!!'}"
+></ng-template>
 ```

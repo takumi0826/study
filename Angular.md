@@ -83,6 +83,12 @@ export class AddBlankToSlashPipe implements PipeTransform {
 <p>{{ text | addBlankToSlash }}</p>
 ```
 
+#### Pipe を View ではない箇所で使用したい場合
+
+1. appModule に記述 `providers: [HogePipe,...]`
+2. 使用したい箇所で DI `constructor(private hogePipe: HogePipe) { }`
+3. `this.hogePipe.transform()`で使用できる
+
 ## trackBy
 
 - 再描画が多い ngFor を使用している箇所で使用
@@ -107,4 +113,20 @@ export class AppComponent implements AfterViewInit {
     this.hogeElement.nativeElement.value = "hello!";
   }
 }
+```
+
+## コンポーネントセレクタの説明
+
+| 要素        | 備考                     |
+| :---------- | :----------------------- |
+| selector    | コンポーネントを示す名前 |
+| templateUrl | HTML ファイル            |
+| styleUrls   | CSS ファイル             |
+
+```ts
+@Component({
+selector: 'app-hoge',
+templateUrl: './hoge.component.html',
+styleUrls: ['./hoge.component.css']
+})
 ```

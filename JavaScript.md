@@ -43,3 +43,35 @@ addItem(items, obj);
 //   { id: "002", name: "fuga" }
 // ]
 ```
+
+## オブジェクトの key または value を取得
+
+- Object.keys()
+- Object.values()
+
+```ts
+const obj = { a: 1, b: 2 };
+Object.keys(obj); // ['a', 'b']
+Object.values(obj); // [1, 2]
+```
+
+## 数字を 0 埋めしたいとき
+
+- padStart()
+
+```ts
+const num = "1";
+num.padStart("0", 3); // '001'
+```
+
+## オブジェクト内の変数を取り出して使用
+
+- 何度も参照するときに使用する
+
+```ts
+const items = { id: "001", name: "hoge" };
+const { id, name } = items;
+
+console.log(id); // '001'
+console.log(name); // 'hoge'
+```

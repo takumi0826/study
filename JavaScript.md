@@ -6,8 +6,7 @@
 
 ```ts
 const array = [1, 2, 1, 2, 3];
-const s = [...new Set(array)];
-console.log(s); // [1,2,3]
+const s = [...new Set(array)]; // [1,2,3]
 ```
 
 ## オブジェクトの詰め替え
@@ -66,8 +65,10 @@ console.log(name); // 'hoge'
 const obj = { a: 1, b: 2 };
 const copy = { ...obj, c: 3 }; // {a: 1, b: 2, c: 3}
 
-//　上書きもできる
-const copy = { ...obj, b: "2" }; // {a: 1, b: '2'}
+//　オブジェクトのマージもできる
+const target = { a: 1, b: 2 };
+const source = { b: 3, c: 4 };
+const copy = { ...target, ...source }; // {a: 1, b: '3', c: '4'}
 ```
 
 ## 配列にオブジェクトを追加
@@ -96,4 +97,42 @@ addItem(items, obj);
 const arr = ["hoge", "fuga"];
 arr.includes("fuga"); // true
 arr.includes("fug"); // false
+```
+
+## 配列から特定の値のみの新規配列を作成
+
+- map()
+
+```ts
+const arr = [
+  { id: "001", name: "hoge" },
+  { id: "002", name: "fuga" },
+];
+const map = arr.map((v) => v.id); // ["001", "002"];
+```
+
+## 配列の絞り込み
+
+- filter()
+
+```ts
+const arr = [
+  { id: "001", name: "hoge" },
+  { id: "002", name: "fuga" },
+];
+const filter = arr.filter((v) => v.id === "001");
+// [{ id: "001", name: "hoge" }];
+```
+
+## 配列の中から最初に見つかったものを返却
+
+- find()
+
+```ts
+const arr = [
+  { id: "001", name: "hoge" },
+  { id: "002", name: "hoge" },
+];
+const find = arr.find((v) => v.name === "hoge");
+// { id: "001", name: "hoge" };
 ```
